@@ -82,8 +82,7 @@ r,r,d,d,r,d,d,r,r,d</code></pre>
         with the new matrix</p>
 <pre><code>for i in range(len(matrix)):
     for j in range(len(matrix[0])):
-        matrix[i][j] = int(matrix[i][j], 16)
-</code></pre>
+        matrix[i][j] = int(matrix[i][j], 16)</code></pre>
 
     <p>The idea here is to figure out the path that will give you the minimum cost
         (optimization problem). Since we can move down and right, we have two choices two
@@ -97,13 +96,13 @@ r,r,d,d,r,d,d,r,r,d</code></pre>
         return cost_matrix[m][n]
     else:
         return cost_matrix[m][n] + min(min_cost(cost_matrix, m-1, n, memo), # once going up
-                                        min_cost(cost_matrix, m, n-1, memo)) # once going left
-</code></pre>
+                                        min_cost(cost_matrix, m, n-1, memo)) # once going left</code></pre>
 
     <p>but this is not very efficient because it will repeat some calls that
         are exactly the same, more than once. This is where we need some thing to
         remember what calls we have visited befroe so that we do not execute them twice.
         This technique is called memoization. </p>
+
 <pre><code>def min_cost(cost_matrix, m, n, memo):
     if n < 0 or m < 0:
         return sys.maxint
@@ -115,12 +114,12 @@ r,r,d,d,r,d,d,r,r,d</code></pre>
         value = cost_matrix[m][n] + min(min_cost(cost_matrix, m-1, n, memo),
                                         min_cost(cost_matrix, m, n-1, memo))
         memo[m][n] = value
-        return value
-    </code></pre>
+        return value</code></pre>
 
     <p>To get the path, we will use our memo matrix to tell us how
         to go from bottom right to top right (since the memo saves
         the minimum at each stage of the path).</p>
+
     <pre><code>def get_path(memo):
     path = ''
     i = len(memo) - 1
@@ -142,8 +141,7 @@ r,r,d,d,r,d,d,r,r,d</code></pre>
             j -= 1
             path += 'r,'
 
-    print '%s' % path[::-1][1:]
-    </code></pre>
+    print '%s' % path[::-1][1:]</code></pre>
     <hr>
 
 
